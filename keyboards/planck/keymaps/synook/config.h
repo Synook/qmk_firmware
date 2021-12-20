@@ -10,6 +10,8 @@
           SONG(DVORAK_SOUND), \
           SONG(DVORAK_SOUND), \
           SONG(DVORAK_SOUND), \
+          SONG(DVORAK_SOUND), \
+          SONG(WORKMAN_SOUND), \
         }
 #endif
 
@@ -20,3 +22,7 @@
 
 // Most tactile encoders have detents every 4 stages
 #define ENCODER_RESOLUTION 4
+
+// Tap-hold settings
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
