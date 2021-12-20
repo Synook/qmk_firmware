@@ -2,7 +2,7 @@
 #include "muse.h"
 
 #ifdef AUDIO_ENABLE
-    float error_song[][2] = SONG(TERMINAL_SOUND);
+    float error_song[][2] = SONG(GUITAR_SOUND);
 #endif
 
 enum planck_layers {
@@ -14,6 +14,7 @@ enum planck_layers {
   _GAME,
   _GAMERAISE,
   _36,
+  _36NOHOLD,
   _36NUM,
   _36SYM,
   _36NAV,
@@ -40,6 +41,7 @@ enum planck_keycodes {
 #define ALT_I LALT_T(KC_I)
 #define GUI_A LGUI_T(KC_A)
 #define GUI_O RGUI_T(KC_O)
+#define NOH_SPC LT(_36NOHOLD, KC_SPC)
 #define NAV_TAB LT(_36NAV, KC_TAB)
 #define WIN_ESC LT(_36WIN, KC_ESC)
 #define NUM_BCK LT(_36NUM, KC_BSPC)
@@ -49,9 +51,9 @@ enum planck_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_planck_grid(
-    KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    KC_TAB,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_ENT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+    KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
+    KC_TAB,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_ENT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
     KC_LCTL, KC_RALT, KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 [_QWERTY] = LAYOUT_planck_grid(
@@ -91,10 +93,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, KC_END,  KC_PGDN, _______, _______, _______
 ),
 [_36] = LAYOUT_planck_grid(
-    KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    X______, X______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
-    GUI_A,   ALT_R,   CTRL_S,  SHIFT_T, KC_G,    X______, X______, KC_M,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,
-    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    X______, X______, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-    X______, X______, WIN_ESC, NAV_TAB, KC_SPC,  X______, X______, SYM_ENT, NUM_BCK, FUN_DEL, X______, X______
+    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    X______, X______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
+    GUI_A,   ALT_R,   CTRL_S,  SHIFT_T, KC_D,    X______, X______, KC_H,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,
+    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    X______, X______, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+    X______, X______, WIN_ESC, NAV_TAB, NOH_SPC, X______, X______, SYM_ENT, NUM_BCK, FUN_DEL, X______, X______
+),
+[_36NOHOLD] = LAYOUT_planck_grid(
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    KC_A,    KC_R,    KC_S,    KC_T,    _______, _______, _______, _______, KC_N,    KC_E,    KC_I,    KC_O,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, KC_ENT,  KC_BSPC, KC_DEL,  _______, _______
 ),
 [_36NUM] = LAYOUT_planck_grid(
     KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC, _______, _______, X______, X______, X______, KC_RALT, X______,
