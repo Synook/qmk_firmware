@@ -13,41 +13,50 @@ enum planck_layers {
   _ADJUST,
   _GAME,
   _GAMERAISE,
-  _36,
-  _36NOHOLD,
-  _36NUM,
-  _36SYM,
-  _36FUN,
-  _36NAV,
-  _36WIN,
-
+  _42,
+  _42NOHOLD,
+  _42LOWER,
+  _42RAISE,
+  _42ADJUST,
+  _42NAV,
+  _42MOUSE,
 };
 
 enum planck_keycodes {
   COLEMAK = SAFE_RANGE,
   QWERTY,
   GAME,
-  THRTYSX,
+  FRTYTWO,
   X______,
 };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define GRAISE MO(_GAMERAISE)
+
+#define LWR_BCK LT(_42LOWER, KC_BSPC)
+#define RSE_ENT LT(_42RAISE, KC_ENT)
+#define ADJ_DEL LT(_42ADJUST, KC_DEL)
+#define NAV_SPC LT(_42NAV, KC_SPC)
+#define NHD_TAB LT(_42NOHOLD, KC_TAB)
+#define MSE_ESC LT(_42MOUSE, KC_ESC)
+#define NDASH RALT(KC_MINS)
+#define MDASH RSA(KC_MINS)
+
 #define SHIFT_T LSFT_T(KC_T)
 #define SHIFT_N RSFT_T(KC_N)
 #define CTRL_S LCTL_T(KC_S)
 #define CTRL_E RCTL_T(KC_E)
 #define ALT_R LALT_T(KC_R)
 #define ALT_I LALT_T(KC_I)
+#define AGR_Y RALT_T(KC_Y)
+#define AGR_W RALT_T(KC_W)
 #define GUI_A LGUI_T(KC_A)
 #define GUI_O RGUI_T(KC_O)
-#define NOH_SPC LT(_36NOHOLD, KC_SPC)
-#define NAV_TAB LT(_36NAV, KC_TAB)
-#define WIN_ESC LT(_36WIN, KC_ESC)
-#define NUM_BCK LT(_36NUM, KC_BSPC)
-#define SYM_ENT LT(_36SYM, KC_ENT)
-#define FUN_DEL LT(_36FUN, KC_DEL)
+#define CTL_Z LCTL(KC_Z)
+#define CTL_X LCTL(KC_X)
+#define CTL_C LCTL(KC_C)
+#define CTL_V LCTL(KC_V)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -77,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_ADJUST] = LAYOUT_planck_grid(
     _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, THRTYSX, COLEMAK, QWERTY,  GAME,    _______,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, FRTYTWO, COLEMAK, QWERTY,  GAME,    _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
@@ -93,47 +102,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_P,    KC_COMM, KC_DOT,  KC_SLSH, KC_F11,  KC_F12,  KC_HOME, KC_PGUP, _______, _______, COLEMAK,
     _______, _______, _______, _______, _______, _______, _______, KC_END,  KC_PGDN, _______, _______, _______
 ),
-[_36] = LAYOUT_planck_grid(
-    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    X______, X______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_QUOT,
-    GUI_A,   ALT_R,   CTRL_S,  SHIFT_T, KC_D,    X______, X______, KC_H,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,
-    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    X______, X______, KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-    X______, X______, WIN_ESC, NAV_TAB, NOH_SPC, X______, X______, SYM_ENT, NUM_BCK, FUN_DEL, X______, X______
+[_42] = LAYOUT_planck_grid(
+    KC_GRV,  KC_Q,    AGR_W,   KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    AGR_Y,   KC_MINS, KC_SCLN,
+    KC_EQL,  GUI_A,   ALT_R,   CTRL_S,  SHIFT_T, KC_D,    KC_H,    SHIFT_N, CTRL_E,  ALT_I,   GUI_O,   KC_QUOT,
+    KC_LBRC, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RBRC,
+    X______, X______, X______, NHD_TAB, MSE_ESC, NAV_SPC, RSE_ENT, LWR_BCK, ADJ_DEL, X______, X______, X______
 ),
-[_36NOHOLD] = LAYOUT_planck_grid(
+[_42NOHOLD] = LAYOUT_planck_grid(
+    _______, _______, KC_W,    _______, _______, _______, _______, _______, _______, KC_Y,    _______, _______,
+    _______, KC_A,    KC_R,    KC_S,    KC_T,    _______, _______, KC_N,    KC_E,    KC_I,    KC_O,    _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_A,    KC_R,    KC_S,    KC_T,    _______, _______, _______, _______, KC_N,    KC_E,    KC_I,    KC_O,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, KC_ENT,  KC_BSPC, KC_DEL,  _______, _______
+    _______, _______, _______, _______, _______, _______, KC_ENT,  KC_BSPC, KC_DEL,  _______, _______, _______
 ),
-[_36NUM] = LAYOUT_planck_grid(
-    KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC, _______, _______, X______, X______, X______, X______, X______,
-    KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,  _______, _______, X______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS, _______, _______, X______, X______, X______, KC_RALT, X______,
-    _______, _______, KC_DOT,  KC_0,    KC_MINS, _______, _______, X______, X______, X______, _______, _______
+[_42NAV] = LAYOUT_planck_grid(
+    XXXXXXX, XXXXXXX, KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY, KC_VOLU,
+    XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_RSFT, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_CAPS, KC_VOLD,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,  KC_MNXT,
+    _______, _______, _______, _______, _______, _______, KC_ENT,  KC_BSPC, KC_DEL,  _______, _______, _______
 ),
-[_36SYM] = LAYOUT_planck_grid(
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______, _______, X______, X______, X______, X______, X______,
-    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, _______, _______, X______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, _______, _______, X______, X______, X______, KC_RALT, X______,
-    _______, _______, KC_LPRN, KC_RPRN, KC_UNDS, _______, _______, X______, X______, X______, _______, _______
+[_42MOUSE] = LAYOUT_planck_grid(
+    XXXXXXX, XXXXXXX, KC_RALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_D, KC_MS_U, KC_WH_U, XXXXXXX, KC_ACL0,
+    XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_RSFT, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, KC_ACL1,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_L, XXXXXXX, KC_WH_R, XXXXXXX, KC_ACL2,
+    _______, _______, _______, _______, _______, _______, KC_BTN1, KC_BTN2, KC_BTN3, _______, _______, _______
 ),
-[_36FUN] = LAYOUT_planck_grid(
-    KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, _______, _______, X______, X______, X______, COLEMAK, RESET,
-    KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SLCK, _______, _______, X______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-    KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, _______, _______, X______, X______, X______, KC_RALT, X______,
-    _______, _______, KC_ESC,  KC_TAB,  KC_SPC,  _______, _______, X______, X______, X______, _______, _______
+[_42LOWER] = LAYOUT_planck_grid(
+    XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX, XXXXXXX, XXXXXXX, KC_RALT, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, XXXXXXX,
+    XXXXXXX, XXXXXXX, KC_GRV,  KC_BSLS, KC_SCLN, NDASH,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, _______, _______, KC_TAB,  KC_ESC,  KC_SPC,  _______, _______, _______, _______, _______, _______
 ),
-[_36NAV] = LAYOUT_planck_grid(
-    X______, X______, X______, X______, X______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, X______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_CAPS,
-    X______, KC_RALT, X______, X______, X______, _______, _______, X______, KC_PSTE, KC_COPY, KC_CUT,  X______,
-    _______, _______, X______, X______, X______, _______, _______, KC_ENT,  KC_BSPC, KC_DEL,  _______, _______
+[_42RAISE] = LAYOUT_planck_grid(
+    XXXXXXX, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, XXXXXXX, XXXXXXX, XXXXXXX, KC_RALT, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, XXXXXXX,
+    XXXXXXX, XXXXXXX, KC_TILD, KC_PIPE, KC_COLN, MDASH,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, _______, _______, KC_TAB,  KC_ESC,  KC_SPC,  _______, _______, _______, _______, _______, _______
 ),
-[_36WIN] = LAYOUT_planck_grid(
-    MEH(KC_Q), MEH(KC_W), MEH(KC_F), MEH(KC_P), MEH(KC_B), _______, _______, MEH(KC_J), MEH(KC_L), MEH(KC_U), MEH(KC_Y), MEH(KC_1),
-    MEH(KC_A), MEH(KC_R), MEH(KC_S), MEH(KC_T), MEH(KC_G), _______, _______, MEH(KC_M), MEH(KC_N), MEH(KC_E), MEH(KC_I), MEH(KC_6),
-    MEH(KC_Z), MEH(KC_X), MEH(KC_C), MEH(KC_D), MEH(KC_V), _______, _______, MEH(KC_K), MEH(KC_H), MEH(KC_2), MEH(KC_3), MEH(KC_4),
-    _______,   _______,   X______,   X______,   X______,   _______, _______, MEH(KC_5), KC_LGUI,   MEH(KC_6), _______,   _______
+[_42ADJUST] = LAYOUT_planck_grid(
+    XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX, XXXXXXX, XXXXXXX, KC_RALT, XXXXXXX, COLEMAK,
+    XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, XXXXXXX,
+    XXXXXXX, KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, GAME,    XXXXXXX, XXXXXXX, XXXXXXX, RESET,
+    _______, _______, _______, KC_TAB,  KC_ESC,  KC_SPC,  _______, _______, _______, _______, _______, _______
 ),
 };
 
@@ -161,9 +170,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case THRTYSX:
+    case FRTYTWO:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_36);
+        set_single_persistent_default_layer(_42);
       }
       return false;
       break;

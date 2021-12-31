@@ -36,5 +36,6 @@
             "filePath": "keyboards\\planck\\keymaps\\synook",
             "group": "Default"
         }
-    ]
+    ],
+    "cmake.configureOnOpen": true
 }
