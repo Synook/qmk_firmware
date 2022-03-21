@@ -71,3 +71,10 @@
 #endif
 
 #define OLED_TIMEOUT 30000
+
+// Space saving
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define NO_ACTION_ONESHOT
+#define NO_MUSIC_MODE
+#define LAYER_STATE_16BIT
